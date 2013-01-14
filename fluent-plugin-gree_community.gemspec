@@ -4,7 +4,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["todesking"]
   gem.email         = ["discommunicative@gmail.com"]
   gem.summary       = %q{Fluentd input plugin, source from GREE community}
-  gem.homepage      = "https://github.com/todesking/fluent-plugin-convert_structure"
+  gem.homepage      = "https://github.com/todesking/fluent-plugin-gree_community"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
