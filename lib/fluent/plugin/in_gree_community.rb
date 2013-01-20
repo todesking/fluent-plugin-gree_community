@@ -1,3 +1,7 @@
+require 'fluent/plugin'
+require 'fluent/config'
+require 'fluent/input'
+
 require 'gree-community'
 require 'pit'
 
