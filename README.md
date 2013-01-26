@@ -29,6 +29,8 @@ Or install it yourself as:
 
         # Regexp for thread title
         thread_title_pattern 雑談|要望
+        # Top N threads to watch
+        recent_threads_num 4
 
         # Pit ID for GREE account('email' and 'password' required)
         pit_id gree

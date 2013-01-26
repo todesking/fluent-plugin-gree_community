@@ -21,7 +21,7 @@ class Fluent::GreeCommunityInput < Fluent::Input
   config_param :community_id, :integer
   config_param :thread_title_pattern, :string
   # Top N threads are watching target
-  config_param :recent_thread_num, :integer
+  config_param :recent_threads_num, :integer
   config_param :tag, :string
 
   def configure(config)
@@ -69,7 +69,7 @@ class Fluent::GreeCommunityInput < Fluent::Input
 
   def fetch_and_emit
     @community.fetch(@fetcher)
-    @community.recent_threads[0...@recent_thread_num].select{|th| th.title =~ @thread_title_pattern}.each do|th|
+    @community.recent_threads[0...@recent_threads_num].select{|th| th.title =~ @thread_title_pattern}.each do|th|
       th.fetch(@fetcher)
       th.recent_comments.each do|comment|
         last_comment_id = @last_comment_ids[[@community.id, th.id]]
