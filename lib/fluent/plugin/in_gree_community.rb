@@ -37,7 +37,8 @@ class Fluent::GreeCommunityInput < Fluent::Input
 
     @community = GREE::Community.new(@community_id)
 
-    @last_comment_id = nil
+    # {[community_id, thread_id] => last_comment_id}
+    @last_comment_ids = {}
 
     $log.info("gree_community: user=#{user_info['email']}")
     $log.info("gree_community: community_id=#{@community_id}")
@@ -69,8 +70,9 @@ class Fluent::GreeCommunityInput < Fluent::Input
     @community.recent_threads.select{|th| th.title =~ @thread_title_pattern}.each do|th|
       th.fetch(@fetcher)
       th.recent_comments.each do|comment|
-        next if @last_comment_id && comment.id <= @last_comment_id
-        @last_comment_id = comment.id
+        last_comment_id = @last_comment_ids[[@community.id, th.id]]
+        next if last_comment_id && comment.id <= last_comment_id
+        @last_comment_ids[[@community.id, th.id]] = comment.id
         Fluent::Engine.emit(@tag, Fluent::Engine.now, {
           'community' => {
             'id' => @community.id,
