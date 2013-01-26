@@ -41,7 +41,7 @@ class Fluent::GreeCommunityInput < Fluent::Input
 
     $log.info("gree_community: user=#{user_info['email']}")
     $log.info("gree_community: community_id=#{@community_id}")
-    $log.info("gree_community: thread_tiele_pattern=#{@thread_title_pattern}")
+    $log.info("gree_community: thread_title_pattern=#{@thread_title_pattern}")
     $log.info("gree_community: interval_sec=#{@interval_sec}")
   end
 
