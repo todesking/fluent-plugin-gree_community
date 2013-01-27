@@ -61,7 +61,8 @@ class Fluent::GreeCommunityInput < Fluent::Input
       begin
         fetch_and_emit
       rescue StandardError, Timeout::Error
-        $log.error("gree_community: Error!! #{$!} #{$!.backtrace.join("\n")}")
+        $log.error("gree_community(community_id=#{@community_id}: #{$!.inspect}")
+        $log.error_backtrace
       end
       sleep @interval_sec
     end
