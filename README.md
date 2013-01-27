@@ -32,6 +32,10 @@ Or install it yourself as:
         # Top N threads to watch
         recent_threads_num 4
 
+        # optional, default=true
+        # omit output when startup
+        silent_startup true
+
         # Pit ID for GREE account('email' and 'password' required)
         pit_id gree
 

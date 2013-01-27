@@ -23,6 +23,7 @@ class Fluent::GreeCommunityInput < Fluent::Input
   # Top N threads are watching target
   config_param :recent_threads_num, :integer
   config_param :tag, :string
+  config_param :silent_startup, :bool, default: true
 
   def configure(config)
     super
@@ -57,13 +58,15 @@ class Fluent::GreeCommunityInput < Fluent::Input
   end
 
   def run
+    @first_time = true
     loop do
       begin
         fetch_and_emit
       rescue StandardError, Timeout::Error
-        $log.error("gree_community(community_id=#{@community_id}: #{$!.inspect}")
+        $log.error("gree_community(community_id=#{@community_id}): #{$!.inspect}")
         $log.error_backtrace
       end
+      @first_time = false
       sleep @interval_sec
     end
   end
@@ -76,6 +79,9 @@ class Fluent::GreeCommunityInput < Fluent::Input
         last_comment_id = @last_comment_ids[[@community.id, th.id]]
         next if last_comment_id && comment.id <= last_comment_id
         @last_comment_ids[[@community.id, th.id]] = comment.id
+
+        next if @silent_startup && @first_time
+
         Fluent::Engine.emit(@tag, Fluent::Engine.now, {
           'community' => {
             'id' => @community.id,
