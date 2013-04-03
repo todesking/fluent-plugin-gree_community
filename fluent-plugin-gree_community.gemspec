@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name          = "fluent-plugin-gree_community"
-  gem.version       = "0.0.1"
+  gem.version       = "0.0.2"
   gem.authors       = ["todesking"]
   gem.email         = ["discommunicative@gmail.com"]
   gem.summary       = %q{Fluentd input plugin, source from GREE community}

@@ -53,7 +53,7 @@ Or install it yourself as:
 
 ## Changes
 
-### 0.0.2(unreleased)
+### 0.0.2
 * Update dependency: gree_community >= 0.0.3
 * Add comment.user_id to output
 
