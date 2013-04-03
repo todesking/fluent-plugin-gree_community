@@ -93,6 +93,7 @@ class Fluent::GreeCommunityInput < Fluent::Input
           'comment' => {
             'id' => comment.id,
             'user_name' => comment.user_name,
+            'user_id' => comment.user_id,
             'body_text' => comment.body_text.strip,
           }
         })
