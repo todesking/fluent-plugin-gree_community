@@ -1,4 +1,4 @@
-# fluent-plugin-gree_community
+# fluent-plugin-gree_community, a plugin for [Fluentd](http://fluentd.org)
 
 Fluentd input plugin from GREE community.
 
